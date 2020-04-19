@@ -14,11 +14,17 @@ import {CommentResolverService} from './services/resolvers/comment-resolver.serv
 import { UserComponent } from './components/single-component/user/user.component';
 import { PostComponent } from './components/single-component/post/post.component';
 import { CommentComponent } from './components/single-component/comment/comment.component';
+import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
+
 
 const routes = [
   {path: '', component: HelloComponent},
-  {path: 'users', component: AllUsersComponent, resolve: {list: UserResolverService}},
-  {path: 'posts', component: AllPostsComponent, resolve: {list: PostResolverService}},
+  {path: 'users', component: AllUsersComponent, resolve: {list: UserResolverService}, children: [
+    {path: ':id/posts', component: AllPostsComponent}
+    ]},
+  {path: 'posts', component: AllPostsComponent, resolve: {list: PostResolverService}, children: [
+      {path: ':id/comments', component: AllCommentsComponent, resolve: {comments: CommentsResolverService}}
+    ]},
   {path: 'comments', component: AllCommentsComponent, resolve: {list: CommentResolverService}},
 ];
 

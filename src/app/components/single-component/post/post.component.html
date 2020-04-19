@@ -1,6 +1,7 @@
-<div>
-  <h3>Post# {{post.id}} to userId {{post.userId}}</h3>
-  <h4>{{post.title}} </h4>
-  <div>{{post.title}}</div>
-</div>
+<blockquote>
+  <h4>Post# {{post.id}} to userId {{post.userId}}</h4>
+  <h5>{{post.title}} </h5>
+  <div>{{post.body}}</div>
+  <button><a [routerLink]="[post.id,'comments']" [queryParams]="{postId: post.id}">comments to this post</a></button>
+ </blockquote>
 <hr>

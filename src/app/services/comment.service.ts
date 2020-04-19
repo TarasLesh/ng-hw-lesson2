@@ -17,4 +17,9 @@ export class CommentService {
 
     return this.httpClient.get<CommentModel[]>(this.API + 'comments');
   }
+
+  getAllCommentOfPost(id): Observable<CommentModel[]> {
+
+    return this.httpClient.get<CommentModel[]>(this.API + `comments?postId=${id}`);
+  }
 }
